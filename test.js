@@ -1,4 +1,4 @@
-var Race = require('./lib/Race.js');
+var Race = require('./lib/FakeRace.js');
 
 var race1 = new Race('Chad', 'Kristin');
 var winner = null;
