@@ -1,7 +1,13 @@
-var myApp = angular.module('app', []);
+var oakwoodApp = angular.module('oakwood', []);
 
-myApp.controller('TestCtrl', function ($scope, $http) {
+oakwoodApp.controller('TestCtrl', function ($scope, $http) {
     $http.get('/api').success(function(data) {
         $scope.vals = data;
+    });
+});
+
+oakwoodApp.controller('RacersCtrl', function ($scope, $http) {
+    $http.get('/api/racers').success(function(data) {
+        $scope.racers = data;
     });
 });

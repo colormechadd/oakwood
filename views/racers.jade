@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    div(ng-controller="RacersCtrl", class="racers")
+        h1 Racers
+        table
+            thead
+                tr
+                    th Racer
+                    th Car
+                    th Status
+            tbody
+                    tr(ng-repeat="racer in racers track by racer.racer_id")
+                        td {{racer.racer_name}}
+                        td {{racer.car_name}}
+                        td {{racer.status}}
+
+

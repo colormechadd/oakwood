@@ -8,14 +8,10 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/api', function(req, res) {
-    res.json([{
-        a: '1',
-        b: '2'
-    }, {
-        a: '2',
-        b: '3'
-    }]);
+router.get('/racers', function(req, res, next) {
+    res.render('racers', {
+        pageTitle: 'Oakwood Derby Racers'
+    });
 });
 
 module.exports = router;
