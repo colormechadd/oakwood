@@ -1,0 +1,13 @@
+html(lang="en")
+  head
+    title= pageTitle
+    link(href='https://fonts.googleapis.com/css?family=Play', rel='stylesheet', type='text/css')
+
+    link(rel='stylesheet', href='/stylesheets/reset.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    script(type='text/javascript', src='/node_modules/angular/angular.min.js')
+    script(type='text/javascript', src='/javascripts/controller.js')
+  body(ng-app="app")
+    h1 Jade - node template engine
+    block content

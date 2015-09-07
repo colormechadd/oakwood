@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    div(ng-controller="TestCtrl")
+        ul
+            li(ng-repeat="v in vals")
+                span {{v.a}}
+                p {{v.b}}
