@@ -26,4 +26,14 @@ router.get('/racers', function(req, res) {
     });
 });
 
+router.post('/racers/create', function(req, res) {
+    pg.connect(connectionString, function(err, client, done) {
+        // SQL Query > Select Data
+        var query = client.query("INSERT INTO racer (racer_name, car_name, status) VALUES ($1, $2, $3)", [req.body.racer_name, req.body.car_name, 'active'], function() {
+            client.end();
+            return res.json();
+        });
+    });
+});
+
 module.exports = router;

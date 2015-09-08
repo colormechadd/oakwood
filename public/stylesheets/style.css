@@ -72,3 +72,44 @@ body table th {
     text-align: left;
     padding: 5px 15px;
 }
+
+form {
+    font-size: 28px;
+    width: 80%;
+    margin: 0px 10%;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form > div {
+    margin-bottom: 20px;
+}
+
+form input[type=text] {
+    width: 400px;
+    font-size: 24px;
+    padding: 5px;
+}
+
+form input[type=text] + span {
+    font-size: .7em;
+    color: red;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+form input[type=submit] {
+    font-size: 24px;
+    width: 150px;
+    background-color: #ddd;
+    padding: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+form input[type=submit]:hover {
+    background-color: #ccc;
+}
