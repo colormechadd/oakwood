@@ -14,4 +14,10 @@ router.get('/racers', function(req, res, next) {
     });
 });
 
+router.get('/racers/new', function(req, res, next) {
+    res.render('new_racer', {
+        pageTitle: 'Add new racer'
+    });
+});
+
 module.exports = router;

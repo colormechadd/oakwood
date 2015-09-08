@@ -2,7 +2,12 @@ extends layout
 
 block content
     div(ng-controller="RacersCtrl", class="racers")
-        h1 Racers
+        header
+            h1 Racers
+            a(href="/racers/new")
+                img(src="/images/plus.png")
+                span Add Racer
+
         table
             thead
                 tr
