@@ -10,9 +10,6 @@ oakwoodApp.controller('RacersCtrl', function ($scope, $http) {
     $http.get('/api/racers').then(function(response) {
         $scope.racers = response.data;
     });
-    $scope.order = function(a,b,c) {
-        debugger;
-    }
 });
 
 oakwoodApp.controller('RacerItemCtrl', function ($scope, $http) {
@@ -33,7 +30,6 @@ oakwoodApp.controller('NewRacersCtrl', function ($scope, $http, $location) {
                 'racer_name': $scope.racer_name,
                 'car_name': $scope.car_name
             }).then(function(response) {
-                debugger;
                 window.location = '/racers';
             });
         }
