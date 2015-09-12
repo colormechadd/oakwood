@@ -15,9 +15,14 @@ block content
                     th Car
                     th Status
             tbody
-                    tr(ng-repeat="racer in racers track by racer.racer_id")
+                    tr(ng-repeat="racer in racers | orderBy: ['status', 'racer_name']" track by racer.racer_id)
                         td {{racer.racer_name}}
                         td {{racer.car_name}}
-                        td {{racer.status}}
+                        td(ng-controller="RacerItemCtrl" class="status")
+                            span(ng-hide="editing" ng-click="editing=true") {{racer.status}}
+                            select(ng-model="racer.status" ng-change="updateStatus()" ng-show="editing" ng-blur="editing=false")
+                                option active
+                                option disqualified
+                                option withdrawn
 
 

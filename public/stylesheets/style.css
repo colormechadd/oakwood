@@ -73,6 +73,10 @@ body table th {
     padding: 5px 15px;
 }
 
+body table td.status span {
+    cursor: pointer;
+}
+
 form {
     font-size: 28px;
     width: 80%;

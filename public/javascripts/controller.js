@@ -10,6 +10,20 @@ oakwoodApp.controller('RacersCtrl', function ($scope, $http) {
     $http.get('/api/racers').then(function(response) {
         $scope.racers = response.data;
     });
+    $scope.order = function(a,b,c) {
+        debugger;
+    }
+});
+
+oakwoodApp.controller('RacerItemCtrl', function ($scope, $http) {
+    $scope.editing = false;
+    $scope.updateStatus = function() {
+        $http.post('/api/racers/'+$scope.racer.racer_id, {
+            status: $scope.racer.status
+        }).then(function(response) {
+            $scope.editing = false;
+        });;
+    };
 });
 
 oakwoodApp.controller('NewRacersCtrl', function ($scope, $http, $location) {
