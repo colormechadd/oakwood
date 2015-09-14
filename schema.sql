@@ -5,6 +5,8 @@ DROP TABLE IF EXISTS tournament;
 DROP TABLE IF EXISTS tournament_racer;
 DROP TABLE IF EXISTS bracket;
 DROP TABLE IF EXISTS racer;
+DROP TABLE IF EXISTS pool;
+DROP TABLE IF EXISTS pool_racer;
 
 DROP TYPE IF EXISTS racer_status;
 DROP TYPE IF EXISTS lane_name;
@@ -22,7 +24,6 @@ CREATE TABLE racer (
     img BYTEA DEFAULT NULL
 );
 
-
 CREATE TABLE lap (
     lap_id SERIAL PRIMARY KEY,
     racer_id INT NOT NULL,
@@ -32,6 +33,7 @@ CREATE TABLE lap (
 
 CREATE TABLE race (
     race_id SERIAL PRIMARY KEY,
+    tournament_id INT NOT NULL,
     lap1_id INT NOT NULL,
     lap2_id INT NOT NULL,
     start_timestamp TIMESTAMP
@@ -58,4 +60,14 @@ CREATE TABLE bracket (
     round INT NOT NULL,
     race_id INT,
     winners_bracker_id INT
+);
+
+CREATE TABLE pool (
+    pool_id SERIAL PRIMARY KEY,
+    tournament_id INT NOT NULL
+);
+
+CREATE TABLE pool_racer (
+    pool_id INT NOT NULL,
+    racer_id INT NOT NULL
 );
