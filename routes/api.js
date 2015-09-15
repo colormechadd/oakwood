@@ -7,9 +7,11 @@ var router = express.Router();
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/oakwood';
 
 var RacerModel = require('../models/RacerModel');
+var PoolModel = require('../models/PoolModel');
+var Tournament = require('../models/Tournament');
 
 router.get('/racers', function(req, res) {
-    model = new RacerModel(config.tournament_id);
+    var model = new RacerModel(config.tournament_id);
     model.load(function(data) {
         return res.json(data);
     });
@@ -26,9 +28,29 @@ router.post('/racers/create', function(req, res) {
 // Update racer
 router.post(/\/racers\/\d+/, function(req, res) {
     var racer_id = path.basename(req.url);
-    model = new RacerModel(config.tournament_id);
+    var model = new RacerModel(config.tournament_id);
     model.update(racer_id, req.body, function() {
         res.end();
+    });
+});
+
+// Load pools
+router.get('/pools', function(req, res) {
+    model = new PoolModel(config.tournament_id);
+    model.load(function(pools) {
+        res.json(pools);
+    });
+});
+
+router.get('/pools/create', function(req, res) {
+    // pull racers, then group them into pools
+    var model = new RacerModel(config.tournament_id);
+    model.load(function(racers) {
+        pools = Tournament.CreatePools(racers, config.max_per_pool);
+        var poolModel = new PoolModel(config.tournament_id);
+        poolModel.save(pools, function() {
+            res.end();
+        });
     });
 });
 

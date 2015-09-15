@@ -4,7 +4,6 @@ var util = require('util');
 
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/oakwood';
 
-
 var RacerModel = function(tournament_id) {
     this.tournament_id = tournament_id;
     events.EventEmitter.call(this);
@@ -20,6 +19,7 @@ RacerModel.prototype.load = function(onLoad) {
                    "        r.car_name, "+
                    "        r.status, "+
                    "        tr.seed, "+
+                   "        qlap.elapsed_time as qualifying_time, "+
                    "        AVG(alap.elapsed_time) as avg_lap_time "+
                    " FROM racer r "+
                    "   JOIN tournament_racer tr ON "+
@@ -31,7 +31,7 @@ RacerModel.prototype.load = function(onLoad) {
                    "   LEFT JOIN race c ON "+
                    "     c.lap1_id = alap.lap_id OR c.lap2_id = alap.lap_id "+
                    " WHERE tr.tournament_id = $1 "+
-                   " GROUP BY 1,2,3,4,5",
+                   " GROUP BY 1,2,3,4,5,6",
             values: [self.tournament_id]
         }, function(err, result) {
             done();
